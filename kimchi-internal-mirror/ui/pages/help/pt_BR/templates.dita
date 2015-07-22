@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Arbortext, Inc., 1988-2011, v.4002-->
+<!DOCTYPE cshelp PUBLIC "-//IBM//DTD DITA CSHelp//EN"
+ "..\dtd\cshelp.dtd">
+
+
+<!--This DITA specialized document type is not supported by the Authoring Tools development team.
+For support please see:
+https://w3.opensource.ibm.com/projects/dita-cshelp/-->
+<cshelp id="kimhtempl" xml:lang="pt-br">
+<title>Modelos</title>
+<shortdesc>A página <wintitle>Modelos</wintitle> mostra os modelos de
+máquina virtual definidos que podem ser usados para criar Máquinas Virtuais do KVM.</shortdesc>
+<csbody>
+<p>Para cada modelo, as informações a seguir são exibidas:<dl>
+<dlentry>
+<dt>S.O.</dt>
+<dd>Nome do sistema operacional ou distribuição.</dd>
+</dlentry><dlentry>
+<dt>Versão</dt>
+<dd>Versão do sistema operacional ou distribuição.</dd>
+</dlentry><dlentry>
+<dt>CPUs</dt>
+<dd>Número de processadores que estão definidos para o modelo.</dd>
+</dlentry><dlentry>
+<dt>Memória</dt>
+<dd>Quantia de memória de acesso aleatório a ser alocada, em MB.</dd>
+</dlentry></dl></p>
+<p>As ações a seguir podem ser selecionadas para cada modelo:<ul>
+<li>Selecione <uicontrol>Editar</uicontrol> para editar o modelo.</li>
+<li>Selecione <uicontrol>Excluir</uicontrol> para excluir o modelo.</li>
+</ul>Para incluir um modelo, clique no ícone <uicontrol>mais (+)</uicontrol> na
+parte superior direita da exibição.</p>
+</csbody>
+<cshelp id="kimhedittempl" xml:lang="en-us">
+<title>Editar modelo</title>
+<shortdesc>Edite um modelo existente.</shortdesc>
+<csbody>
+<p>Para cada modelo, as informações a seguir são exibidas: <dl>
+<dlentry>
+<dt>Nome</dt>
+<dd>Nome do modelo.</dd>
+</dlentry><dlentry>
+<dt>Fornecedor</dt>
+<dd>O nome da empresa que criou o sistema operacional ou a distribuição
+que o modelo está configurado para usar.</dd>
+</dlentry><dlentry>
+<dt>Versão</dt>
+<dd>A versão do sistema operacional ou distribuição que o modelo
+está configurado para usar.</dd>
+</dlentry><dlentry>
+<dt>Número de CPU</dt>
+<dd>Número de processadores que estão definidos para o modelo.</dd>
+</dlentry><dlentry>
+<dt>Memória</dt>
+<dd>Quantia de memória em MB a ser alocada para a máquina virtual.</dd>
+</dlentry><dlentry>
+<dt>Disco</dt>
+<dd>O tamanho do disco em GB.</dd>
+</dlentry><dlentry>
+<dt>CD-ROM</dt>
+<dd>O  caminho do arquivo para o local do arquivo ISO usado para instalar o
+convidado do KVM.</dd>
+</dlentry><dlentry>
+<dt>storage pool</dt>
+<dd>storage pool específico ou storage pool padrão.</dd>
+</dlentry><dlentry>
+<dt>Rede</dt>
+<dd>As interfaces de rede padrão disponíveis para o convidado do KVM. É possível
+selecionar diversas redes.</dd>
+</dlentry></dl> Os campos que não estão desativados podem ser editados. Depois
+de editar um campo, clique em <uicontrol>Salvar</uicontrol>. </p>
+</csbody>
+</cshelp>
+<cshelp id="kimhaddtempl">
+<title>Incluir modelo</title>
+<shortdesc>Inclua um modelo a partir da mídia de origem.
+É possível incluir sua própria imagem ISO em seu conjunto de armazenamentos 'ISO' para a descoberta a seguir.</shortdesc>
+<csbody>
+<p>Selecione o local da mídia de origem a partir das opções a seguir:<dl>
+<dlentry>
+<dt>Imagem ISO local</dt>
+<dd>Selecione para varrer conjuntos de armazenamentos para imagens ISO de instalação disponíveis
+no sistema.</dd>
+</dlentry><dlentry>
+<dt>Imagem ISO remota</dt>
+<dd>Selecione para especificar um local remoto para uma imagem ISO de instalação.</dd>
+</dlentry></dl></p>
+</csbody>
+</cshelp>
+<cshelp id="kimhaddloct">
+<title>Incluir modelo - imagem ISO local</title>
+<shortdesc>Inclua um modelo a partir de uma imagem ISO local.</shortdesc>
+<csbody>
+<p>As imagens ISO disponíveis no sistema são exibidas.<dl><dlentry>
+<dt>S.O.</dt>
+<dd>Nome do sistema operacional ou distribuição.</dd>
+</dlentry><dlentry>
+<dt>Versão</dt>
+<dd>Versão do sistema operacional ou distribuição.</dd>
+</dlentry><dlentry>
+<dt>Tamanho</dt>
+<dd>Tamanho da imagem ISO.</dd>
+</dlentry></dl></p>
+<p>Para criar um modelo a partir de uma imagem ISO, escolha a partir das opções
+a seguir:<ul>
+<li>Selecione uma imagem ISO para criar um modelo a partir dela, em seguida, clique em <uicontrol>Criar
+modelos a partir do ISO selecionado</uicontrol>.</li>
+<li>Selecione <uicontrol>Todos</uicontrol> para criar um modelo a partir de cada
+imagem ISO listada, em seguida, clique em <uicontrol>Criar modelos a partir do
+ISO selecionado</uicontrol>.</li>
+<li>Se a imagem ISO que você deseja usar não aparecer nos resultados de
+varredura, será possível selecionar a partir das opções a seguir:<ul>
+<li>Selecione <uicontrol>Eu desejo usar um arquivo ISO específico</uicontrol> para
+especificar um caminho para a imagem ISO.</li>
+<li>Clique em <uicontrol>Procurar mais ISOs</uicontrol> para procurar mais
+imagens ISO.</li>
+</ul></li>
+</ul></p>
+</csbody>
+</cshelp>
+</cshelp>
+
+
+<!-- ENGL1SH_VERS10N 61085_5 DO NOT REMOVE OR CHANGE THIS LINE -->
+<!-- T9N_SRC_ID 229 -->
+<!-- T9N_SH1P_STR1NG KV211AAP001 1 -->

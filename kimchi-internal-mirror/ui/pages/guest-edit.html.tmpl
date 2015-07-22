@@ -1,0 +1,309 @@
+#*
+ * Project Kimchi
+ *
+ * Copyright IBM, Corp. 2013-2015
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *#
+#unicode UTF-8
+#import gettext
+#silent t = gettext.translation($lang.domain, $lang.localedir, languages=$lang.lang, fallback=True)
+#silent _ = t.gettext
+#silent _t = t.gettext
+
+<div id="guest-edit-window" class="window">
+    <header>
+        <h1 class="title">$_("Edit Guest")</h1>
+        <div class="close">X</div>
+    </header>
+    <div class="content">
+        <div id="guest-edit-tabs">
+            <ul>
+                <li>
+                    <a href="#form-guest-edit-general">$_("General")</a>
+                </li>
+                <li>
+                    <a href="#form-guest-edit-storage">$_("Storage")</a>
+                </li>
+                <li>
+                    <a href="#form-guest-edit-interface">$_("Interface")</a>
+                </li>
+                <li>
+                    <a href="#form-guest-edit-permission">$_("Permission")</a>
+                </li>
+                <li>
+                    <a href="#form-guest-edit-pci">$_("Host PCI Device")</a>
+                </li>
+                <li>
+                    <a href="#form-guest-edit-snapshot">$_("Snapshot")</a>
+                </li>
+            </ul>
+            <form id="form-guest-edit-general">
+                <fieldset class="guest-edit-fieldset">
+                    <div class="edit-general-inline">
+                        <div class="guest-edit-wrapper-label">
+                            <label for="guest-edit-id-textbox">
+                                $_("Name")
+                            </label>
+                        </div>
+                        <div class="guest-edit-wrapper-label">
+                            <label for="guest-edit-cores-textbox">
+                                $_("CPUs")
+                            </label>
+                        </div>
+                        <div class="guest-edit-wrapper-label">
+                            <label for="guest-edit-memory-textbox">
+                                $_("Memory (MB)")
+                            </label>
+                        </div>
+                        <div class="guest-edit-wrapper-label">
+                            <label for="guest-edit-icon-textbox">
+                                $_("Icon")
+                            </label>
+                        </div>
+                    </div>
+                    <div class="edit-general-inline">
+                        <div class="guest-edit-wrapper-controls">
+                            <input id="guest-edit-id-textbox"
+                                name="name" type="text" />
+                        </div>
+                        <div class="guest-edit-wrapper-controls">
+                            <input
+                                id="guest-edit-cores-textbox"
+                                name="cpus"
+                                type="text" />
+                        </div>
+                        <div class="guest-edit-wrapper-controls">
+                            <input id="guest-edit-memory-textbox"
+                                name="memory"
+                                type="text" />
+                        </div>
+                        <div class="guest-edit-wrapper-controls">
+                            <input
+                                id="guest-edit-icon-textbox"
+                                name="icon"
+                                type="text"
+                                disabled="disabled" />
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+            <form id="form-guest-edit-storage">
+                <div class="header">
+                    <span class="cell">$_("Device")</span>
+                    <span class="cell">$_("Path")</span>
+                    <button type="button" id="guest-edit-attach-cdrom-button" class="action-area attach"></button>
+                </div>
+                <div class="body"></div>
+            </form>
+            <form id="form-guest-edit-interface" class="guest-edit-interface">
+                <div class="header">
+                    <span class="cell">$_("Network")</span>
+                    <span class="cell">$_("Type")</span>
+                    <span class="cell">$_("MAC Address")</span>
+                    <button class="add action-area"></button>
+                </div>
+                <div class="body"></div>
+            </form>
+            <form id="form-guest-edit-permission" class="guest-edit-permission">
+                <div class="pam">
+                    <div class="column avail">
+                        <div class="title">$_("Available system users and groups")</div>
+                        <input type="text" id="permission-avail-searchBox">
+                        <div class="body">
+                            <div class="head">
+                                <div class="column column-user"><div class="item">Users</div></div>
+                                <div class="column column-group"><div class="item">Groups</div></div>
+                            </div>
+                            <div id="permission-avail-users" class="column column-user"></div>
+                            <div id="permission-avail-groups"  class="column column-group"></div>
+                        </div>
+                    </div>
+                    <div class="column control">
+                        <button id="permissionGo"> > </button>
+                        <button id="permissionBack"> < </button>
+                    </div>
+                    <div class="column selected">
+                        <div class="title">$_("Selected system users and groups")</div>
+                        <input type="text" id="permission-sel-searchBox">
+                        <div class="body">
+                            <div class="head">
+                                <div class="column column-user"><div class="item">Users</div></div>
+                                <div class="column column-group"><div class="item">Groups</div></div>
+                            </div>
+                            <div id="permission-sel-users" class="column column-user"></div>
+                            <div id="permission-sel-groups"  class="column column-group"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ldap">
+                    <div class="header">
+                        <span class="cell">$_("User")</span>
+                        <button type="button" id="guest-edit-add-user-button" class="action-area add"></button>
+                    </div>
+                    <div class="body"></div>
+                </div>
+            </form>
+            <form id="form-guest-edit-pci" class="guest-edit-pci">
+                <div class="guest-scroll-indent">
+                    <div class="filter">
+                        <span class="group">
+                            <select class="control">
+                                <option value="all">$_("All")</option>
+                                <option value="toAdd">$_("To Add")</option>
+                                <option value="added">$_("Added")</option>
+                            </select><input type="text" class="control" placeholder="$_("filter")">
+                        </span>
+                    </div>
+                    <div class="header">
+                        <span class="cell name">$_("Name")</span>
+                        <span class="cell product">$_("Product")</span>
+                        <span class="cell vendor">$_("Vendor")</span>
+                    </div>
+                    <div class="body"></div>
+                </div>
+            </form>
+            <form id="form-guest-edit-snapshot" class="guest-edit-snapshot">
+                <div class="header">
+                    <span class="cell sel"></span>
+                    <span class="cell name">$_("Name")</span>
+                    <span class="cell created">$_("Created")</span>
+                    <button class="add action-area"></button>
+                </div>
+                <div class="task"></div>
+                <div class="body"></div>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <div id="action-button-container" class="btn-group hidden">
+            <button id="guest-edit-button-save" class="btn-normal">
+                <span class="text">$_("Save")</span>
+            </button>
+        </div>
+    </footer>
+</div>
+<script id="cdrom-row-tmpl" type="text/html">
+    <div class="item view" id="cdrom-{dev}">
+        <span class="cell dev">
+            <input type="text" readonly="readonly"
+                id="cdrom-dev-{dev}" name="cdrom-dev-{dev}" value="{dev}" />
+        </span>
+        <span class="cell path">
+            <input id="cdrom-path-{dev}" name="cdrom" type="text"
+                data-vm="{vm}" data-dev="{dev}"
+                value="{path}" readonly="readonly" />
+        </span>
+        <span class="action-area">
+            <button type="button" class="guest-edit-cdrom-button replace"
+                data-vm="{vm}" data-dev="{dev}"
+                title='$_("Replace")'>
+            </button>
+            <button type="button" class="guest-edit-cdrom-button detach"
+                data-vm="{vm}" data-dev="{dev}" data-type="{type}"
+                title='$_("Detach")'>
+            </button>
+            <button type="button" class="guest-edit-cdrom-button save hidden"
+                data-vm="{vm}" data-dev="{dev}"
+                title='$_("Save")'>
+            </button>
+            <button type="button" class="guest-edit-cdrom-button cancel hidden"
+                data-vm="{vm}" data-dev="{dev}"
+                title='$_("Cancel")'>
+            </button>
+        </span>
+    </div>
+</script>
+<script id="interface-tmpl" type="text/html">
+    <div class="item" id="{mac}">
+        <span class="cell">
+            <label id="label-network-{id}" class="{viewMode}">{network}</label>
+            <select class="{editMode}"></select>
+        </span>
+        <span class="cell">
+            <span>{type}</span>
+        </span>
+        <span class="cell">
+            <label id="label-mac-{id}" class="{viewMode}">{mac}</label>
+            <input class="{editMode}" type="text" 
+               id="edit-mac-{id}" name="{mac}" value="{mac}" />
+        </span>
+        <span class="action-area {editMode}">
+            <button class="save"></button><button class="cancel"></button>
+        </span>
+        <span class="action-area {viewMode}">
+            <button class="edit"></button><button class="delete"></button>
+        </span>
+    <div>
+</script>
+<script id="ldap-user-tmpl" type="text/html">
+    <div class="item" id="{user}">
+        <span class="cell">
+            <label class="{viewMode}">{user}</label>
+            <input type="text"  placeholder="LDAP User ID,e.g.foo@foo.com" class="{editMode}"/>
+        </span>
+        <span class="action-area">
+            <button class="delete"></button>
+        </span>
+    <div>
+</script>
+<script id="disk-row-tmpl" type="text/html">
+    <div class="item" id="cdrom-{dev}">
+        <span class="cell dev">
+            <input type="text" readonly="readonly"
+                id="disk-dev-{dev}" name="disk-dev-{dev}" value="{dev}" />
+        </span>
+        <span class="cell path">
+            <input id="disk-path-{dev}" name="path-{dev}" type="text"
+                data-vm="{vm}" data-dev="{dev}"
+                value="{path}" readonly="readonly" />
+        </span>
+        <span class="action-area">
+            <button type="button" class="guest-edit-cdrom-button detach"
+                data-vm="{vm}" data-dev="{dev}" data-type="{type}"
+                title="$_("Detach")">
+            </button>
+        </span>
+    </div>
+</script>
+<script id="permission-item-pam" type="text/html">
+<div class="item">
+    <span class="icon {class}"></span>
+    <label>{val}</label>
+</div>
+</script>
+<script id="pci-tmpl" type="text/html">
+<div class="item" id="{name}">
+    <span class="cell name" title="{name}">{name}</span>
+    <span class="cell product" title="{product}">{product}</span>
+    <span class="cell vendor" title="{vendor}">{vendor}</span>
+    <button></button>
+</div>
+</script>
+<script id="snapshot-tmpl" type="text/html">
+    <div class="item" id="{name}">
+        <span class="cell sel">
+            <span class="icon {createMode}"></span>
+            <span class="ui-icon ui-icon-check hide"></span>
+        </span>
+        <span class="cell name">{name}</span>
+        <span class="cell created">{created}</span>
+        <span class="action-area">
+            <button class="revert {listMode}" title="$_("revert")"></button>
+            <button class="delete {listMode}"></button>
+        </span>
+    <div>
+</script>
+<script type="text/javascript">
+    kimchi.guest_edit_main();
+</script>
